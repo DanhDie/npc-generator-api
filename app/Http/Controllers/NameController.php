@@ -63,4 +63,12 @@ class NameController extends Controller
     {
         //
     }
+    public function random()
+{
+    $name = Name::inRandomOrder()->first();
+
+    return response()->json([
+        'name' => $name->name
+    ]);
+}
 }

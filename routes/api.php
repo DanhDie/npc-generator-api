@@ -2,14 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Name;
+use App\Http\Controllers\NameController;
 
-Route::get('/random-name', function () {
-
-    $name = Name::inRandomOrder()->first();
-
-    return response()->json([
-        'name' => $name->name
-    ]);
-
-});
+Route::get('/random-name', [NameController::class, 'random']);
