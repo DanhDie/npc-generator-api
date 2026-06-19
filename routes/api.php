@@ -6,4 +6,4 @@ use App\Http\Controllers\NameController;
 use App\Http\Controllers\NpcController;
 
 Route::get('/random-name', [NameController::class, 'random']);
-Route::get('/npc/generate', [NpcController::class, 'generate']);
+Route::get('/npc/generate', [NpcController::class, 'generate'])->middleware('auth:sanctum');
