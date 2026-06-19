@@ -2,9 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Name;
 
-Route::get('/npc', function (Request $request) {
+Route::get('/random-name', function () {
+
+    $name = Name::inRandomOrder()->first();
+
     return response()->json([
-        'message' => 'Hello World'
-        ]);
-})->middleware('auth:sanctum');
+        'name' => $name->name
+    ]);
+
+});
