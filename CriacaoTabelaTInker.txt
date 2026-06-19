@@ -1,0 +1,47 @@
+\App\Models\Race::create([
+    'name' => 'Humano'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Elfo'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Anão'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Meio-Orc'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Tiefling'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Meio-elfo'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Pequenino'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Draconato'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Gnomo'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Elfo Negro'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Bugbear'
+]);
+
+\App\Models\Race::create([
+    'name' => 'Goblin'
+]);
