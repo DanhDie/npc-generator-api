@@ -17,9 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
          $this->call([
-        RaceSeeder::class,
-        FirstNameSeeder::class,
-        LastNameSeeder::class,
+            RaceSeeder::class,
+            FirstNameSeeder::class,
+            LastNameSeeder::class,
+            PTraitSeeder::class,    
+            IdealSeeder::class,
+            BondSeeder::class,
+            FlawSeeder::class,
         ]);
 
         User::factory()->create([
