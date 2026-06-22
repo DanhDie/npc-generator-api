@@ -10,6 +10,7 @@ class FirstNameSeeder extends Seeder
 {
     public function run(): void
     {
+        // Busca as raças existentes
         $humano    = Race::where('name', 'Humano')->first();
         $elfo      = Race::where('name', 'Elfo')->first();
         $anao      = Race::where('name', 'Anão')->first();
@@ -22,155 +23,63 @@ class FirstNameSeeder extends Seeder
         $goblin    = Race::where('name', 'Goblin')->first();
         $tiefling  = Race::where('name', 'Tiefling')->first();
 
-        FirstName::create([
-            'name' => 'Marcus',
-            'gender' => 'M',
-            'race_id' => $humano->id
-        ]);
+        // Todos os nomes estruturados por raça e gênero
+        $allNames = [
+            // --- HUMANO ---
+            ['race_id' => $humano->id, 'gender' => 'M', 'names' => ['Marcus', 'Boran', 'Fodel', 'Glar', 'Grath', 'Mandar']],
+            ['race_id' => $humano->id, 'gender' => 'F', 'names' => ['Julia', 'Alethra', 'Kara', 'Natali', 'Pela', 'Zora']],
 
-        FirstName::create([
-            'name' => 'Julia',
-            'gender' => 'F',
-            'race_id' => $humano->id
-        ]);
+            // --- ELFO ---
+            ['race_id' => $elfo->id, 'gender' => 'M', 'names' => ['Aelar', 'Adran', 'Aramil', 'Arannis', 'Aust', 'Berrian']],
+            ['race_id' => $elfo->id, 'gender' => 'F', 'names' => ['Lythia', 'Adrie', 'Althaea', 'Anastrianna', 'Andraste', 'Bethrynna']],
 
-        FirstName::create([
-            'name' => 'Aelar',
-            'gender' => 'M',
-            'race_id' => $elfo->id
-        ]);
+            // --- ANÃO ---
+            ['race_id' => $anao->id, 'gender' => 'M', 'names' => ['Thorin', 'Adrik', 'Alberich', 'Baern', 'Barendd', 'Bruenor']],
+            ['race_id' => $anao->id, 'gender' => 'F', 'names' => ['Helga', 'Amber', 'Artin', 'Audhild', 'Bardryn', 'Dagnal']],
 
-        FirstName::create([
-            'name' => 'Lythia',
-            'gender' => 'F',
-            'race_id' => $elfo->id
-        ]);
+            // --- MEIO-ORC ---
+            ['race_id' => $meioOrc->id, 'gender' => 'M', 'names' => ['Holgar', 'Dench', 'Feng', 'Gell', 'Henk', 'Imsh']],
+            ['race_id' => $meioOrc->id, 'gender' => 'F', 'names' => ['Vola', 'Baggi', 'Emen', 'Engong', 'Kansif', 'Myev']],
 
-        FirstName::create([
-            'name' => 'Thorin',
-            'gender' => 'M',
-            'race_id' => $anao->id
-        ]);
+            // --- MEIO-ELFO ---
+            ['race_id' => $meioElfo->id, 'gender' => 'M', 'names' => ['Tanis', 'Carric', 'Enialis', 'Erdan', 'Erevan', 'Galinndan']],
+            ['race_id' => $meioElfo->id, 'gender' => 'F', 'names' => ['Arwen', 'Caelynn', 'Drusilia', 'Enna', 'Felosial', 'Ielenia']],
 
-        FirstName::create([
-            'name' => 'Helga',
-            'gender' => 'F',
-            'race_id' => $anao->id
-        ]);
+            // --- GNOMO ---
+            ['race_id' => $gnomo->id, 'gender' => 'M', 'names' => ['Fizzlebang', 'Alston', 'Alvyn', 'Boddynock', 'Brocc', 'Burgell']],
+            ['race_id' => $gnomo->id, 'gender' => 'F', 'names' => ['Nissa', 'Bimpnottin', 'Breena', 'Caramip', 'Carlin', 'Donella']],
 
-        FirstName::create([
-            'name' => 'Holgar',
-            'gender' => 'M',
-            'race_id' => $meioOrc->id
-        ]);
+            // --- HALFLING ---
+            ['race_id' => $halfling->id, 'gender' => 'M', 'names' => ['Bilbo', 'Alton', 'Ander', 'Cade', 'Corrin', 'Eldon']],
+            ['race_id' => $halfling->id, 'gender' => 'F', 'names' => ['Rosie', 'Andry', 'Bree', 'Callie', 'Cora', 'Euphemia']],
 
-        FirstName::create([
-            'name' => 'Vola',
-            'gender' => 'F',
-            'race_id' => $meioOrc->id
-        ]);
+            // --- DRACONATO ---
+            ['race_id' => $draconato->id, 'gender' => 'M', 'names' => ['Torinn', 'Arjhan', 'Balasar', 'Bharash', 'Donaar', 'Ghesh']],
+            ['race_id' => $draconato->id, 'gender' => 'F', 'names' => ['Kava', 'Akra', 'Biri', 'Daar', 'Farideh', 'Harann']],
 
-        FirstName::create([
-            'name' => 'Poesia',
-            'gender' => 'A',
-            'race_id' => $tiefling->id
-        ]);
+            // --- TIEFLING ---
+            ['race_id' => $tiefling->id, 'gender' => 'M', 'names' => ['Melek', 'Akmenos', 'Amnon', 'Barakas', 'Damakos', 'Ekemon']],
+            ['race_id' => $tiefling->id, 'gender' => 'F', 'names' => ['Kallista', 'Akta', 'Anakis', 'Bryseis', 'Criella', 'Damaia']],
+            ['race_id' => $tiefling->id, 'gender' => 'A', 'names' => ['Poesia', 'Ternura', 'Desespero', 'Arte', 'Canção', 'Crença', 'Excelência', 'Esperança']],
 
-        FirstName::create([
-            'name' => 'Ternura',
-            'gender' => 'A',
-            'race_id' => $tiefling->id
-        ]);
+            // --- BUGBEAR ---
+            ['race_id' => $bugbear->id, 'gender' => 'M', 'names' => ['Karg', 'Hrak', 'Grumm', 'Thrug', 'Krooth', 'Zuhg']],
+            ['race_id' => $bugbear->id, 'gender' => 'F', 'names' => ['Gora', 'Gnarla', 'Brakka', 'Kraela', 'Vug', 'Surg']],
 
-        FirstName::create([
-            'name' => 'Desespero',
-            'gender' => 'A',
-            'race_id' => $tiefling->id
-        ]);
+            // --- GOBLIN ---
+            ['race_id' => $goblin->id, 'gender' => 'M', 'names' => ['Snikrot', 'Droop', 'Gark', 'Klay', 'Nibs', 'Sly']],
+            ['race_id' => $goblin->id, 'gender' => 'F', 'names' => ['Riz', 'Breeg', 'Gizil', 'Pip', 'Ria', 'Vix']],
+        ];
 
-        // --- Meio-Elfo ---
-        FirstName::create([
-            'name' => 'Tanis',
-            'gender' => 'M',
-            'race_id' => $meioElfo->id
-        ]);
-        FirstName::create([
-            'name' => 'Arwen',
-            'gender' => 'F',
-            'race_id' => $meioElfo->id
-        ]);
-
-        // --- Gnomo ---
-        FirstName::create([
-            'name' => 'Fizzlebang',
-            'gender' => 'M',
-            'race_id' => $gnomo->id
-        ]);
-        FirstName::create([
-            'name' => 'Nissa',
-            'gender' => 'F',
-            'race_id' => $gnomo->id
-        ]);
-
-        // --- Halfling ---
-        FirstName::create([
-            'name' => 'Bilbo',
-            'gender' => 'M',
-            'race_id' => $halfling->id
-        ]);
-        FirstName::create([
-            'name' => 'Rosie',
-            'gender' => 'F',
-            'race_id' => $halfling->id
-        ]);
-
-        // --- Draconato ---
-        FirstName::create([
-            'name' => 'Torinn',
-            'gender' => 'M',
-            'race_id' => $draconato->id
-        ]);
-        FirstName::create([
-            'name' => 'Kava',
-            'gender' => 'F',
-            'race_id' => $draconato->id
-        ]);
-
-        // --- Bugbear ---
-        FirstName::create([
-            'name' => 'Karg',
-            'gender' => 'M',
-            'race_id' => $bugbear->id
-        ]);
-        FirstName::create([
-            'name' => 'Gora',
-            'gender' => 'F',
-            'race_id' => $bugbear->id
-        ]);
-
-        // --- Goblin ---
-        FirstName::create([
-            'name' => 'Snikrot',
-            'gender' => 'M',
-            'race_id' => $goblin->id
-        ]);
-        FirstName::create([
-            'name' => 'Riz',
-            'gender' => 'F',
-            'race_id' => $goblin->id
-        ]);
-
-        // --- Tiefling ---
-        FirstName::create([
-            'name' => 'Melek',
-            'gender' => 'M',
-            'race_id' => $tiefling->id
-        ]);
-        FirstName::create([
-            'name' => 'Kallista',
-            'gender' => 'F',
-            'race_id' => $tiefling->id
-        ]);
-        
+        // Executa um loop único para inserir todos os nomes no banco de dados
+        foreach ($allNames as $group) {
+            foreach ($group['names'] as $name) {
+                FirstName::create([
+                    'name' => $name,
+                    'gender' => $group['gender'],
+                    'race_id' => $group['race_id']
+                ]);
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ class LastNameSeeder extends Seeder
 {
     public function run(): void
     {
+        // Busca as raças existentes
         $humano    = Race::where('name', 'Humano')->first();
         $elfo      = Race::where('name', 'Elfo')->first();
         $anao      = Race::where('name', 'Anão')->first();
@@ -22,104 +23,83 @@ class LastNameSeeder extends Seeder
         $goblin    = Race::where('name', 'Goblin')->first();
         $tiefling  = Race::where('name', 'Tiefling')->first();
 
-       // --- Humano ---
-        LastName::create([
-            'name' => 'Valerius',
-            'race_id' => $humano->id
-        ]);
-        LastName::create([
-            'name' => 'Rivers',
-            'race_id' => $humano->id
-        ]);
+        // Todos os sobrenomes estruturados com base na sua lista oficial
+        $allLastNames = [
+            // --- ANÃO (Nomes de Clãs oficiais em inglês) ---
+            'anao' => [
+                'id' => $anao->id,
+                'names' => ['Balderk', 'Battlehammer', 'Brawnanvil', 'Dankil', 'Fireforge', 'Frostbeard', 'Gorunn', 'Holderhek']
+            ],
 
-        // --- Elfo ---
-        LastName::create([
-            'name' => 'Folha de Prata',
-            'race_id' => $elfo->id
-        ]);
-        LastName::create([
-            'name' => 'Luz Estelar',
-            'race_id' => $elfo->id
-        ]);
+            // --- ELFO (Sobrenomes originais sem tradução) ---
+            'elfo' => [
+                'id' => $elfo->id,
+                'names' => ['Amakiir', 'Amastacia', 'Galanodel', 'Holimion', 'Ilphelkiir', 'Liadon', 'Meliamne', 'Nailo']
+            ],
 
-        // --- Anão ---
-        LastName::create([
-            'name' => 'Cabeça de Pedra',
-            'race_id' => $anao->id
-        ]);
-        LastName::create([
-            'name' => 'Martelo de Ferro',
-            'race_id' => $anao->id
-        ]);
+            // --- HALFLING (Nomes de família oficiais traduzidos do livro) ---
+            'halfling' => [
+                'id' => $halfling->id,
+                'names' => ['Cata-Escovas', 'Bom-Barril', 'Garrafa Verde', 'Alta Colina', 'Baixa Colina', 'Prato Cheio', 'Folha de Chá', 'Espinhudo']
+            ],
 
-        // --- Meio-Orc ---
-        LastName::create([
-            'name' => 'Esmaga-Crânio',
-            'race_id' => $meioOrc->id
-        ]);
-        LastName::create([
-            'name' => 'Cicatriz de Ferro',
-            'race_id' => $meioOrc->id
-        ]);
+            // --- DRACONATO (Nomes de Clãs oficiais do livro) ---
+            'draconato' => [
+                'id' => $draconato->id,
+                'names' => ['Clethtinthiallor', 'Daardendrian', 'Delmirev', 'Drachedandion', 'Fenkenkabradon', 'Kepeshkmolik', 'Kerrhylon', 'Kimbatuul']
+            ],
 
-        // --- Meio-Elfo ---
-        LastName::create([
-            'name' => 'Vento do Leste',
-            'race_id' => $meioElfo->id
-        ]);
-        LastName::create([
-            'name' => 'Orvalho',
-            'race_id' => $meioElfo->id
-        ]);
+            // --- GNOMO (Nomes de Clãs oficiais do livro) ---
+            'gnomo' => [
+                'id' => $gnomo->id,
+                'names' => ['Beren', 'Daergel', 'Folkor', 'Garrick', 'Nackle', 'Murnig', 'Ningel', 'Raulnor']
+            ],
 
-        // --- Gnomo ---
-        LastName::create([
-            'name' => 'Engrenagem',
-            'race_id' => $gnomo->id
-        ]);
-        LastName::create([
-            'name' => 'Faisca',
-            'race_id' => $gnomo->id
-        ]);
+            // --- MEIO-ELFO (Mistura os sobrenomes Humanos e Élficos sem tradução) ---
+            'meioElfo' => [
+                'id' => $meioElfo->id,
+                'names' => ['Amakiir', 'Galanodel', 'Liadon', 'Nailo', 'Brightwood', 'Evenwood', 'Windrunner', 'Woodfont']
+            ],
 
-        // --- Halfling ---
-        LastName::create([
-            'name' => 'Pé-Leve',
-            'race_id' => $halfling->id
-        ]);
-        LastName::create([
-            'name' => 'Chá-Verde',
-            'race_id' => $halfling->id
-        ]);
+            // --- MEIO-ORC (Nomes de Tribos/Clãs Orcs do cenário oficial) ---
+            'meioOrc' => [
+                'id' => $meioOrc->id,
+                'names' => ['Many-Arrows', 'Deathstable', 'Screaming-Eye', 'Gnashtooth', 'Ironshield', 'Bloodclaws', 'Bonecutter', 'Thunderfist']
+            ],
 
-        // --- Draconato ---
-        LastName::create([
-            'name' => 'Preaxithyn',
-            'race_id' => $draconato->id
-        ]);
-        LastName::create([
-            'name' => 'Myastan',
-            'race_id' => $draconato->id
-        ]);
+            // --- HUMANO (Sobrenomes clássicos das regiões do Livro do Jogador) ---
+            'humano' => [
+                'id' => $humano->id,
+                'names' => ['Brightwood', 'Helder', 'Hornraven', 'Lackman', 'Stormwind', 'Ankhalab', 'Jassan', 'Chergoba']
+            ],
 
-        // --- Bugbear ---
-        LastName::create([
-            'name' => 'Mão-Pesada',
-            'race_id' => $bugbear->id
-        ]);
-        LastName::create([
-            'name' => 'Presa-Negra',
-            'race_id' => $bugbear->id
-        ]);
+            // --- TIEFLING (Nomes baseados nas linhagens nobres de Infinitas Mentiras/Cenário oficial) ---
+            'tiefling' => [
+                'id' => $tiefling->id,
+                'names' => ['Sorrow', 'Ashen', 'Crypt', 'Torment', 'Vex', 'Malice', 'Void', 'Gloom']
+            ],
 
-        // --- Goblin ---
-        LastName::create([
-            'name' => 'Racha-Canela',
-            'race_id' => $goblin->id
-        ]);
-        LastName::create([
-            'name' => 'Dente-Podre',
-            'race_id' => $goblin->id
-        ]);
+            // --- BUGBEAR (Nomes de bandos e epítetos brutais) ---
+            'bugbear' => [
+                'id' => $bugbear->id,
+                'names' => ['Hairyfoot', 'Skullcleaver', 'Bonecrusher', 'Shadowstalker', 'Bloodfangs', 'Ironhide', 'Gorgonstare', 'Sharpfang']
+            ],
+
+            // --- GOBLIN (Nomes baseados em tribos canônicas de D&D) ---
+            'goblin' => [
+                'id' => $goblin->id,
+                'names' => ['Batiri', 'Cragmaw', 'Mudbite', 'Spiderbite', 'Ratsmacker', 'Sharpstick', 'Gutterrunner', 'Sneakthief']
+            ],
+        ];
+
+        // Executa o loop único para inserir os sobrenomes revisados no banco
+        foreach ($allLastNames as $race) {
+            foreach ($race['names'] as $lastName) {
+                LastName::create([
+                    'name' => $lastName,
+                    'race_id' => $race['id']
+                ]);
+            }
+        }
     }
 }
