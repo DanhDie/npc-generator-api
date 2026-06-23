@@ -47,7 +47,7 @@ class NpcController extends Controller
             $fullName .= ' ' . $lastName->name;
         }
 
-        
+        # Cria uma nova instância de NPC na tabela de NPCs
         $npc = Npc::create([
         'user_id'          => $request->user()->id,
         'name'             => $fullName,
@@ -58,14 +58,15 @@ class NpcController extends Controller
         'ideal_description'=> $ideal->description,
         'bond'             => $bond->description,
         'flaw'             => $flaw->description,
-        'strength'         => floor((random_int(1, 20)/2)-5),
-        'dexterity'        => floor((random_int(1, 20)/2)-5),
+        'strength'         => floor((random_int(1, 20)/2)-5),   # Fiquei com preguiça de criar uma variável para cada atributo
+        'dexterity'        => floor((random_int(1, 20)/2)-5),   # Aliás, todos os atributos vem como modificadores, não ligo não
         'constitution'     => floor((random_int(1, 20)/2)-5),
         'intelligence'     => floor((random_int(1, 20)/2)-5),
         'wisdom'           => floor((random_int(1, 20)/2)-5),
         'charisma'         => floor((random_int(1, 20)/2)-5),
     ]);
 
+    # Retorno FEIO, mas para poder separar os dados do NPC dos atributos.
     return response()->json([
         'npc' => [
             'id'     => $npc->id,
