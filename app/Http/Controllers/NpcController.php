@@ -47,6 +47,20 @@ class NpcController extends Controller
             $fullName .= ' ' . $lastName->name;
         }
 
+        # Rolador de atributos com CUREVA DE SINO
+        function rollStat(): int {
+            $rolls = [
+                random_int(1, 6),
+                random_int(1, 6),
+                random_int(1, 6),
+                random_int(1, 6)
+            ];
+            sort($rolls); # Põe em oredem
+            array_shift($rolls); # Tira o mais baixo
+            $total = array_sum($rolls)+1; # Soma
+            return (int) floor($total / 2) - 5; // Modificador na hora 
+        }
+
         # Cria uma nova instância de NPC na tabela de NPCs
         $npc = Npc::create([
         'user_id'          => $request->user()->id,
@@ -58,12 +72,12 @@ class NpcController extends Controller
         'ideal_description'=> $ideal->description,
         'bond'             => $bond->description,
         'flaw'             => $flaw->description,
-        'strength'         => floor((random_int(1, 20)/2)-5),   # Fiquei com preguiça de criar uma variável para cada atributo
-        'dexterity'        => floor((random_int(1, 20)/2)-5),   # Aliás, todos os atributos vem como modificadores, não ligo não
-        'constitution'     => floor((random_int(1, 20)/2)-5),
-        'intelligence'     => floor((random_int(1, 20)/2)-5),
-        'wisdom'           => floor((random_int(1, 20)/2)-5),
-        'charisma'         => floor((random_int(1, 20)/2)-5),
+        'strength'         => rollStat(),
+        'dexterity'        => rollStat(),
+        'constitution'     => rollStat(),
+        'intelligence'     => rollStat(),
+        'wisdom'           => rollStat(),
+        'charisma'         => rollStat(),
     ]);
 
     # Retorno FEIO, mas para poder separar os dados do NPC dos atributos.

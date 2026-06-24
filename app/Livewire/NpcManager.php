@@ -15,6 +15,7 @@ class NpcManager extends Component
     public $editStrength, $editDexterity, $editConstitution;
     public $editIntelligence, $editWisdom, $editCharisma;
 
+    # Primeira vez rodando, pega todos os NPCs
     public function mount()
     {
         $this->loadNpcs();
